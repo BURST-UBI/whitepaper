@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>BURST Blog</title>
+        <link>https://burst.gautamnitesh.me/blog</link>
+        <description>BURST Blog</description>
+        <lastBuildDate>Thu, 27 Mar 2025 22:51:44 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[intro]]></title>
+            <link>https://burst.gautamnitesh.me/blog/intro</link>
+            <guid>https://burst.gautamnitesh.me/blog/intro</guid>
+            <pubDate>Thu, 27 Mar 2025 22:51:44 GMT</pubDate>
+            <description><![CDATA[There is nothing here right now]]></description>
+            <content:encoded><![CDATA[<p>There is nothing here right now</p>]]></content:encoded>
+        </item>
+    </channel>
+</rss>

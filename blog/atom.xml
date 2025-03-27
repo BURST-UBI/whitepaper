@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://burst.gautamnitesh.me/blog</id>
+    <title>BURST Blog</title>
+    <updated>2025-03-27T22:51:44.721Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://burst.gautamnitesh.me/blog"/>
+    <subtitle>BURST Blog</subtitle>
+    <icon>https://burst.gautamnitesh.me/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[intro]]></title>
+        <id>https://burst.gautamnitesh.me/blog/intro</id>
+        <link href="https://burst.gautamnitesh.me/blog/intro"/>
+        <updated>2025-03-27T22:51:44.721Z</updated>
+        <summary type="html"><![CDATA[There is nothing here right now]]></summary>
+        <content type="html"><![CDATA[<p>There is nothing here right now</p>]]></content>
+    </entry>
+</feed>
