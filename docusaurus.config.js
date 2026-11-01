@@ -1,4 +1,5 @@
 const {themes} = require('prism-react-renderer');
+const protocolSource = require('./protocol-source.json');
 
 module.exports = {
   title: 'BURST',
@@ -20,7 +21,7 @@ module.exports = {
       rehypePlugins: [require('./src/plugins/currency-terms')],
       exclude: ['SUMMARY.md'],
       sidebarPath: require.resolve('./sidebars.js'),
-      editUrl: 'https://github.com/BURST-UBI/protocol/edit/main/docs/',
+      editUrl: ({docPath}) => `https://github.com/BURST-UBI/protocol/edit/${protocolSource.ref}/docs/${docPath}`,
     },
     blog: false,
     pages: false,
@@ -75,7 +76,7 @@ module.exports = {
       style: 'light',
       links: [{title: 'Source', items: [
         {label: 'Protocol and documentation', href: 'https://github.com/BURST-UBI/protocol'},
-        {label: 'Markdown files', href: 'https://github.com/BURST-UBI/protocol/tree/main/docs'},
+        {label: 'Markdown files', href: `https://github.com/BURST-UBI/protocol/tree/${protocolSource.commit}/docs`},
       ]}],
       copyright: 'BURST · Open-source software under the MIT license',
     },
