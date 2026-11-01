@@ -17,20 +17,36 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check for a newer protocol commit
+        id: source
+        run: |
+          node tools/prepare-protocol.mjs --update
+          if git diff --quiet -- protocol-source.json; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
       - uses: dtolnay/rust-toolchain@master
+        if: steps.source.outputs.changed == 'true'
         with:
           toolchain: nightly-2026-10-11
-      - run: node tools/prepare-protocol.mjs --update
       - uses: Swatinem/rust-cache@v2
+        if: steps.source.outputs.changed == 'true'
         with:
           workspaces: tools/parameter-export
       - run: node tools/documentation-defaults.mjs --write
+        if: steps.source.outputs.changed == 'true'
       - name: Require canonical docs to agree
+        if: steps.source.outputs.changed == 'true'
         run: git -C .protocol diff --exit-code -- docs spec/coverage.json
       - run: node --test tools/documentation-defaults.test.mjs
+        if: steps.source.outputs.changed == 'true'
       - run: npm ci
+        if: steps.source.outputs.changed == 'true'
       - run: npm run build
+        if: steps.source.outputs.changed == 'true'
       - name: Record updated source
+        if: steps.source.outputs.changed == 'true'
         run: |
           git add protocol-source.json protocol-defaults.json
           if git diff --cached --quiet; then exit 0; fi
