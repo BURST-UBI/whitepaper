@@ -2,7 +2,7 @@ name: Documentation website
 on:
   pull_request:
   push:
-    branches: [main, docs/docusaurus]
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read

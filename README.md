@@ -35,10 +35,10 @@ changes must be submitted to the protocol repository first, then sync can resume
 The `--write` command updates those files without carrying implementation sign-offs
 onto changed text. Prose still needs review when policy changes.
 
-The checked-in source branch is temporarily `docs/protocol-guide`, pending its
-merge into protocol `main`. Change the `ref` to `main` after that merge.
+Sync follows protocol `main`. Each website commit still records the exact
+protocol revision it renders.
 
 ## Deploy
 
 Vercel uses this repository's root, `npm ci`, `npm run build` and `build/`.
-Preview branches do not promote `brst.cc`. Production cutover remains separate.
+Pushes to `main` deploy to `brst.cc`. Other branches create previews.

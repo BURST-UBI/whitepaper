@@ -4,3 +4,6 @@ build/
 .vercel/
 .protocol/
 tools/parameter-export/target/
+dist/
+__pycache__/
+.venv/

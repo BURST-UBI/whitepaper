@@ -1,5 +1,5 @@
 {
   "repository": "https://github.com/BURST-UBI/protocol.git",
-  "ref": "docs/protocol-guide",
+  "ref": "main",
   "commit": "122950f2b8b4bebb23d8922c300ba0aa3263eefd"
 }
