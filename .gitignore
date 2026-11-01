@@ -1,0 +1,6 @@
+node_modules/
+build/
+.docusaurus/
+.vercel/
+.protocol/
+tools/parameter-export/target/

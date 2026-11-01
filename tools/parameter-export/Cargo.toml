@@ -1,0 +1,15 @@
+[package]
+name = "burst-documentation-defaults"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+burst-types = { path = "../../.protocol/types" }
+burst-governance = { path = "../../.protocol/governance" }
+serde_json = "1"
+
+[profile.dev]
+debug = 0

@@ -1,0 +1,40 @@
+name: Sync protocol documentation
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sync-protocol
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2026-10-11
+      - run: node tools/prepare-protocol.mjs --update
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/parameter-export
+      - run: node tools/documentation-defaults.mjs --write
+      - name: Require canonical docs to agree
+        run: git -C .protocol diff --exit-code -- docs spec/coverage.json
+      - run: node --test tools/documentation-defaults.test.mjs
+      - run: npm ci
+      - run: npm run build
+      - name: Record updated source
+        run: |
+          git add protocol-source.json protocol-defaults.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Sync documentation from the protocol repository'
+          git push

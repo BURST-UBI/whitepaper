@@ -1,0 +1,32 @@
+name: Documentation website
+on:
+  pull_request:
+  push:
+    branches: [main, docs/docusaurus]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2026-10-11
+      - run: node tools/prepare-protocol.mjs
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/parameter-export
+      - run: node tools/documentation-defaults.mjs --verify
+      - run: node --test tools/documentation-defaults.test.mjs
+      - run: npm ci
+      - run: npm run build
