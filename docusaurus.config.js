@@ -4,12 +4,21 @@ const protocolSource = require('./protocol-source.json');
 module.exports = {
   title: 'BURST',
   tagline: 'A currency built around people',
+  favicon: 'brand/burst.svg',
   url: 'https://brst.cc',
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'throw',
   markdown: {
     format: 'md',
+    parseFrontMatter: async (params) => {
+      const parsed = await params.defaultParseFrontMatter(params);
+      // Keep the canonical index intact while giving the website its own front page.
+      if (params.filePath.replaceAll('\\', '/').endsWith('/.protocol/docs/README.md')) {
+        parsed.frontMatter.slug = '/docs';
+      }
+      return parsed;
+    },
     preprocessor: ({fileContent}) => fileContent.replace(/<!-- default:[\w.]+(?::[\w]+)? -->|<!-- \/default -->/g, ''),
     mermaid: true,
     hooks: {onBrokenMarkdownLinks: 'throw', onBrokenMarkdownImages: 'throw'},
@@ -24,13 +33,14 @@ module.exports = {
       editUrl: ({docPath}) => `https://github.com/BURST-UBI/protocol/edit/${protocolSource.ref}/docs/${docPath}`,
     },
     blog: false,
-    pages: false,
+    pages: {},
     theme: {customCss: require.resolve('./src/css/custom.css')},
   }]],
   themes: [
     '@docusaurus/theme-mermaid',
     ['@easyops-cn/docusaurus-search-local', {
       hashed: true,
+      searchBarShortcutHint: false,
       docsRouteBasePath: '/',
       docsDir: '.protocol/docs',
       indexBlog: false,
@@ -66,8 +76,9 @@ module.exports = {
     colorMode: {defaultMode: 'light', respectPrefersColorScheme: false},
     navbar: {
       title: 'BURST',
+      logo: {alt: '', src: 'brand/burst.svg', width: 32, height: 32},
       items: [
-        {to: '/introduction/QUICK_TOUR', label: 'Introduction', position: 'left'},
+        {to: '/docs', label: 'Documentation', position: 'left'},
         {to: '/introduction/WHITEPAPER', label: 'Whitepaper', position: 'left'},
         {href: 'https://github.com/BURST-UBI/protocol', label: 'GitHub', position: 'right'},
       ],

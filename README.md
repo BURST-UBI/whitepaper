@@ -4,6 +4,10 @@ Docusaurus source for the BURST website. Protocol code and canonical Markdown
 remain in [BURST-UBI/protocol](https://github.com/BURST-UBI/protocol).
 This repository owns the website, styling, deployment and default-value tooling.
 
+The landing page lives in `src/pages/`. The documentation index is at `/docs/`;
+individual articles keep their existing URLs. Article text still comes from the
+protocol repository. `static/brand/` reuses the exported wallet icons unchanged.
+
 `protocol-source.json` records the protocol commit used by a deployment.
 The build checks it out into ignored `.protocol/` and renders its `docs/`
 directly, including the original illustrations. There is no editable copy of

@@ -6,10 +6,10 @@
   --ifm-color-primary-light: #b84a1a;
   --ifm-color-primary-lighter: #c04d1c;
   --ifm-color-primary-lightest: #d9571f;
-  --ifm-background-color: #fcfbf8;
-  --ifm-background-surface-color: #fcfbf8;
+  --ifm-background-color: #fcfcfa;
+  --ifm-background-surface-color: #fcfcfa;
   --ifm-font-color-base: #282822;
-  --ifm-font-family-base: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --ifm-font-family-base: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --ifm-line-height-base: 1.75;
   --ifm-heading-font-weight: 600;
   --ifm-navbar-height: 4rem;
@@ -44,12 +44,21 @@
   --flow-trst: #99c2df;
 }
 .navbar {border-bottom: 1px solid var(--ifm-toc-border-color); padding-inline: 1.75rem;}
-.navbar__title {font-size: 1.25rem; font-weight: 750; letter-spacing: -.045em;}
+.navbar__title {display: flex; align-items: center; gap: .8rem; font-size: 1.18rem; font-weight: 700; letter-spacing: .035em;}
+.navbar__logo {width: 32px; height: 32px; margin-right: .55rem;}
+.navbar__brand {min-height: 44px;}
+.navbar__toggle {min-width: 44px; min-height: 44px;}
 .navbar__brand {margin-right: 2.5rem;}
 .navbar__link {font-size: .88rem; font-weight: 500;}
 .navbar__items--right {gap: .75rem;}
+.navbar__search-input {width: 10rem; height: 40px; border-radius: 5px; background-color: var(--reading-panel); color: var(--ifm-font-color-base);}
+.navbar__search-input::placeholder {color: var(--reading-muted); opacity: 1;}
+@media (max-width: 480px) {
+  .navbar__search-input {width: 7rem;}
+  .navbar__brand {margin-right: .5rem;}
+}
 .theme-doc-sidebar-menu {padding: .65rem .5rem; font-size: .84rem;}
-.menu__link {line-height: 1.5; padding: .45rem .75rem; border-radius: 4px;}
+.menu__link {line-height: 1.5; padding: .45rem .75rem; border-radius: 0;}
 .menu__list-item-collapsible > .menu__link {color: var(--ifm-font-color-base); font-weight: 650;}
 .menu__list-item-collapsible {margin-top: .35rem;}
 .menu__link--active:not(.menu__link--sublist) {box-shadow: inset 2px 0 var(--ifm-color-primary);}
@@ -57,7 +66,7 @@
 .theme-doc-markdown {font-size: 1.02rem;}
 .markdown > p, .markdown > ul, .markdown > ol {max-width: 65ch;}
 .markdown h1, .markdown h2, .markdown h3 {text-wrap: balance;}
-.markdown h1 {font-family: var(--ifm-font-family-base); font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 650; line-height: 1.08; letter-spacing: -.045em; margin-bottom: 1.75rem;}
+.markdown h1 {font-family: var(--ifm-font-family-base); font-size: clamp(2.2rem, 3.4vw, 3rem); font-weight: 600; line-height: 1.08; letter-spacing: -.045em; margin-bottom: 1.75rem;}
 .markdown h2 {margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--ifm-toc-border-color); font-size: 1.65rem; line-height: 1.3; letter-spacing: -.025em;}
 .markdown h3 {font-size: 1.15rem; letter-spacing: -.015em;}
 .markdown > h1 + p {font-size: 1.16rem; line-height: 1.75; color: var(--reading-muted);}
@@ -71,14 +80,14 @@
 .markdown .docusaurus-mermaid-container {padding: 1.5rem .5rem; background: var(--reading-panel); border-radius: 6px; overflow-x: auto;}
 .table-of-contents {font-size: .78rem; line-height: 1.6;}
 .table-of-contents__link {color: var(--reading-muted);}
-.pagination-nav__link {border-radius: 4px; padding: 1.1rem;}
+.pagination-nav__link {border: 0; border-top: 1px solid var(--ifm-toc-border-color); border-radius: 0; padding: 1.1rem 0;}
 .pagination-nav__sublabel {font-size: .75rem; color: var(--reading-muted);}
 .pagination-nav__label {font-size: .95rem; font-weight: 500;}
 .footer {border-top: 1px solid var(--ifm-toc-border-color); background: var(--ifm-background-color); padding-block: 2.5rem; font-size: .85rem;}
 .footer__title {font-size: .85rem;}
 .footer__copyright {color: var(--reading-muted); text-align: left;}
 .button {border-radius: 4px; font-weight: 500;}
-:focus-visible {outline: 2px solid var(--ifm-color-primary); outline-offset: 4px;}
+:focus-visible {outline: 2px solid var(--ifm-font-color-base); outline-offset: 4px;}
 .markdown header + p {font-size: 1.12rem; color: var(--reading-muted);}
 @media (min-width: 997px) {
   main > .container {padding: 2.75rem 3rem 4rem !important;}
@@ -86,7 +95,7 @@
 @media (max-width: 996px) {
   .navbar {padding-inline: 1rem;}
   main > .container {padding-block: 1.5rem;}
-  .markdown h1 {font-size: 2rem;}
+  .markdown h1 {font-size: 2.5rem;}
   .markdown table {display: block; overflow-x: auto;}
 }
 @media (prefers-reduced-motion: reduce) {
@@ -138,3 +147,5 @@
   .payment-flow__steps {grid-template-columns: 1fr; gap: 1.25rem;}
   .payment-flow__step + .payment-flow__step {border-left: 0; border-top: 1px solid var(--ifm-toc-border-color); padding-left: 0; padding-top: 1.25rem;}
 }
+
+body {-webkit-font-smoothing: antialiased;}
